@@ -1,1 +1,17 @@
 extends layout
+
+block extraheader
+	script(src="/javascripts/jquery.min.js")
+	script(src="/javascripts/ng-grid-2.0.11.min.js")
+	link(rel='stylesheet', href="/stylesheets/ng-grid.css")
+	script(src="/javascripts/docente.js")
+block content
+	h1= title
+		small= ' — ' + subtitle
+	.content-fluid(ng-controller="docenteController")
+		.row
+			.col-md-9
+				{{nombred}}
+				.gridStyle(ng-grid="gridOptions")
+			.col-md-3
+				| menu
