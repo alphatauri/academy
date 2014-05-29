@@ -1,5 +1,21 @@
 extends layout
 
+block postHead
+	script(src="bower_components/jquery/dist/jquery.min.js")
+	script(src="bower_components/angular-grid/ng-grid-2.0.11.min.js")
+	link(href="bower_components/angular-grid/ng-grid.css", rel="stylesheet")
+	script(src="javascripts/principal.js")
+	style.
+		.gridStyle{
+			border: 1px solid rgb(212,212,212); 
+			width: 400px; 
+			height: 300px;
+		}
 block content
-	.container
-		a.button.large(href='/docente') Docentes
+	h1= title 
+	.content-fluid(ng-controller="inicioController")
+		.row-fluid
+			.col-md-9
+				p Welcome to #{title}
+				{{nombre}}
+				.gridStyle(ng-grid="gridOptions")

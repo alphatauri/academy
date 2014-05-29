@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug = require('debug')('academia');
+var debug = require('debug')('acadamtest');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 3000);

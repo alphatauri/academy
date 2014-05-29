@@ -1,12 +1,19 @@
 {
-  "name": "academia",
+  "name": "acadamtest",
   "version": "0.0.0",
-  "homepage": "https://github.com/alphatauri/academy",
   "authors": [
     "Diego Atayra <diego@cycnova.com.ar>"
   ],
+  "description": "prueba de bower y angular",
   "moduleType": [
     "node"
+  ],
+  "keywords": [
+    "test",
+    "academia",
+    "node",
+    "angular",
+    "bootstrap"
   ],
   "license": "MIT",
   "private": true,
@@ -18,12 +25,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.16",
-    "angular-bootstrap": "~0.11.0",
     "bootstrap": "~3.1.1",
-    "jquery": "~2.1.1"
-  },
-  "resolutions": {
-    "jquery": ">= 1.9.0"
+    "angular-bootstrap": "~0.11.0",
+    "angular-grid": "~2.0.11"
   }
 }
