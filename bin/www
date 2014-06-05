@@ -1,9 +1,46 @@
 #!/usr/bin/env node
-var debug = require('debug')('acadamtest');
+var debug = require('debug')('academia');
 var app = require('../app');
 
-app.set('port', process.env.PORT || 3000);
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/academia');
 
-var server = app.listen(app.get('port'), function() {
-  debug('Express server listening on port ' + server.address().port);
+var Schema = mongoose.Schema;
+var DocenteSchema = new Schema({
+	nombre: {
+		nombre: String,
+		apellido: String
+	},
+	nacimiento: Date,
+	domicilio: String,
+	telefonos: [String],
+	comentarios: [{fecha: Date, comentario: String}],
+	asignaturas: {type: [String], index: true},
+	activo: Boolean
+},{autoIndex: false});
+DocenteSchema.virtual('nombre.completo').get(function(){
+	return this.nombre.apellido + ', ' + this.nombre.nombre;
 });
+DocenteSchema.virtual('nombre.completo').set(function(nombre){
+	var segmentos = nombre.split(',');
+
+	this.nombre.apellido = segmentos[0];
+	this.nombre.nombre = segmentos[1];
+})
+DocenteSchema.index({nombre:1, type: -1});
+var Docente = mongoose.model('Docente', DocenteSchema);
+
+
+
+
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+
+	app.set('port', process.env.PORT || 3000);
+
+	var server = app.listen(app.get('port'), function() {
+	  debug('Express server listening on port ' + server.address().port);
+	});
+})
